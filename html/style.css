@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css?family=Exo+2');
+
+body {
+    margin: 1px;
+    font-family: "Exo 2", Arial, sans-serif;
+    color: antiquewhite;
+    background-color: #2d436b;
+}
+
+.league_player_div {
+    max-width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    border: 3px solid rgba(50, 50, 50, .5);
+    border-radius: 3px;
+    background-color: rgba(50, 50, 50, .5);
+    padding: 5px;
+    margin: 12px;
+    box-shadow: 5px 5px 15px black;
+}
+
+
+@media (max-width: 475px) {
+    .league_player_div {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+    }
+}
+
+.league_player_div:hover {
+    background: linear-gradient(45deg, rgba(250, 250, 250, .2), rgba(50, 50, 50, .5));
+}
+
+
+.provisional_player {
+    background-color: rgba(250, 50, 50, .5);
+}
+
+.provisional_player:hover {
+    background: linear-gradient(45deg, rgba(250, 125, 125, .5), rgba(250, 50, 50, .5));
+}
+
+.player_main_div {
+    display: flex;
+    width: 40%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 475px) {
+    .player_main_div {
+        width: 100%;
+    }
+}
+
+.player_rank_div {
+    min-width: 1.5em;
+    padding-right: 4px;
+    border-radius: 2px;
+    text-align: right;
+    font-size: 20pt;
+}
+
+.player_tag_div {
+    font-size: 16pt;
+}
+
+.player_rating_div {
+    display: flex;
+    align-items: center;
+    width: 20%;
+    font-size: 20pt;
+}
+
+.player_rates_div {
+    width: 33%;
+    padding-right: 10px;
+    text-align: right;
+}
+
+@media (max-width: 475px) {
+    .player_rates_div {
+        width: 100%;
+    }
+}
+
+.game_rate_div {
+
+}
+
+.set_rate_div {
+
+}
+
+.rate-number {
+
+}
+
+.rate-percentage {
+
+}
+
+
+
+.league_match_div {
+    max-width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    border: 3px solid rgba(50, 50, 50, .5);
+    border-radius: 3px;
+    background-color: rgba(50, 50, 50, .5);
+    padding: 5px;
+    margin: 12px;
+    box-shadow: 5px 5px 15px black;
+}
+
+.league_match_div:hover {
+    background: linear-gradient(45deg, rgba(250, 250, 250, .2), rgba(50, 50, 50, .5));
+}
+
+.set_count_div {
+    width: 20%;
+    font-size: 18pt;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+@media (max-width: 475px) {
+    .set_count_div {
+        font-size: 13pt;
+    }
+
+}
+
+.match_results_div {
+    font-size: 16pt;
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+
+.match_tag_div {
+
+}
+
+
+.match_winner_div {
+    width: 33%;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.match_loser_div {
+    width: 33%;
+    padding-left: 10px;
+    text-align: left;
+}
+
+
+
+
+.league_tournament_div {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    border: 3px solid rgba(50, 50, 50, .5);
+    border-radius: 3px;
+    background-color: rgba(50, 50, 50, .5);
+    padding: 5px;
+    margin: 12px;
+    box-shadow: 5px 5px 15px black;
+}
+
+.tournament_name_div {
+    width: 100%;
+    text-align: center;
+    font-size: 25pt;
+    font-variant: small-caps;
+}
+
+.tournament_date_div {
+    min-width: 25%;
+    text-align: right;
+    margin: 5px;
+}
+
+.bracket_link_div {
+    margin-top: 1px;
+    padding: 5px;
+    min-width: 25%;
+    text-align: right;
+}
+
+a {
+    background-color: #2d436b;
+    border-radius: 3px;
+    padding: 2px 5px;
+    text-decoration: none;
+    color: cadetblue;
+    box-shadow: 2px 2px 3px black;
+}
+
+a:hover {
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, .2);
+}

@@ -1,0 +1,1 @@
+This is an elo ranking project made in Python 3 for use by the Smash 64 players of Georgia.
