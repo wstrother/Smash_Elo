@@ -1,2 +1,2 @@
-TAG1
-TAG2
+exampletag1
+exampletag2

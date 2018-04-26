@@ -1,2 +1,2 @@
-TAG ALT1 ALT2
-TAG ALT3
+exampletag1 alt1 alt2
+exampletag2 alt3

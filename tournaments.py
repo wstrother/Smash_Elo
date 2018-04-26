@@ -4,9 +4,12 @@ from settings import CHALLONGE_USERNAME, CHALLONGE_API_KEY
 from league import League, Match
 
 
-def get_tournament_from_url(url, alts=None):
+def get_tournament_from_url(url, strength, alts=None):
+    if " " in url:
+        pass
+
     if "challonge.com" in url:
-        return ChallongeTournament(url, alts=alts)
+        return ChallongeTournament(url, strength, alts=alts)
 
     # if "smash.gg" in url:
     #     return SmashggTournament(url, alts=alts)
@@ -15,10 +18,11 @@ def get_tournament_from_url(url, alts=None):
 class ChallongeTournament:
     challonge.set_credentials(CHALLONGE_USERNAME, CHALLONGE_API_KEY)
 
-    def __init__(self, url, alts=None):
+    def __init__(self, url, strength, alts=None):
         name = url.split("/")[-1]
         self.name = name
         self.url = url
+        self.strength = strength
         self.alts = alts
 
         print("\nRetrieving data from {}".format(url))
@@ -43,8 +47,10 @@ class ChallongeTournament:
                     p["name"], alts=self.alts
                 )
 
-    def get_match_list(self, strength=1, player_list=None):
+    def get_match_list(self, player_list=None):
         matches = []
+        if player_list:
+            player_list = [League.get_check_str(n) for n in player_list]
 
         for match in self.matches:
             # check names against alts
@@ -61,11 +67,11 @@ class ChallongeTournament:
 
             # convert to league data
             if include:
-                matches.append(self.get_match_object(match, strength=strength))
+                matches.append(self.get_match_object(match))
 
         return matches
 
-    def get_match_object(self, match, strength=1):
+    def get_match_object(self, match):
         winner_tag = self.get_tag_by_id(match["winner-id"])
         loser_tag = self.get_tag_by_id(match["loser-id"])
 
@@ -79,5 +85,5 @@ class ChallongeTournament:
         return Match(
             winner_tag, loser_tag,
             set_count, self.name,
-            strength=strength
+            strength=self.strength
         )

@@ -2,7 +2,7 @@
 
 # SETTINGS
 
-LEAGUE_NAME = "Your League"
+LEAGUE_NAME = "League name"
 TOURNEY_FILE = "tournaments.txt"
 ALTS_FILE = "alts.txt"
 FOLLOW_FILE = "follow.txt"
@@ -15,5 +15,5 @@ ELO_WIDTH = 400
 K_FACTOR = 32
 
 # CHALLONGE
-CHALLONGE_USERNAME = "userName"
-CHALLONGE_API_KEY = "apiKey"
+CHALLONGE_USERNAME = "yourUserName"
+CHALLONGE_API_KEY = "yourApiKey"
