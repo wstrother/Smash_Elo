@@ -1,6 +1,3 @@
-import json
-from os.path import join
-
 from settings import ELO_WIDTH, START_ELO, K_FACTOR
 import elo
 
@@ -38,9 +35,18 @@ class Player:
         player.display_name = json_data["display_name"]
         player.id = json_data["id"]
 
+        if Player.ID <= player.id:
+            Player.ID = player.id + 1
+
         return player
 
 
+# Match objects implement the following properties:
+# set_count: returns (winner_games, loser_games)
+# winner_change: returns adjustment value for game wins by winner
+# loser_change: returns adjustment value for game wins by loser
+# applied_change: returns (winner_change * winner_games)
+#                           - (loser_change * loser_games)
 class Match:
     ID = 0
 
@@ -168,6 +174,8 @@ class League:
             "tournaments": self.tournaments
         }
 
+    # gets player object / creates new object if
+    # tag is not in self.players
     def get_player_by_tag(self, tag):
         check_str = self.check_tag(tag)
 
@@ -176,6 +184,7 @@ class League:
 
         return self.players[check_str]
 
+    # adds match_list from tournament
     def add_tournament(self, tournament, player_list=None):
         include = True
         for t in self.tournaments:
@@ -190,6 +199,7 @@ class League:
                     player_list=player_list
             )
 
+    # applies match elo from all unapplied matches
     def apply_season_elo(self):
         for t in self.tournaments:
             print("\nApplying matches from {}".format(t["name"]))
@@ -204,6 +214,7 @@ class League:
         for player in players:
             print("{:>30}: \t{}".format(player.tag, player.rating))
 
+    # alters player elo ratings by match.applied_change value
     def apply_match_elo(self, match):
         if not match.elo_applied:
             print("\nApplying match: {}".format(match))
@@ -230,6 +241,7 @@ class League:
             print("\t{} {} -> {}".format(winner.tag, match.winner_elo, winner.rating))
             print("\t{} {} -> {}".format(loser.tag, match.loser_elo, loser.rating))
 
+    # checks tag against alts
     @staticmethod
     def check_tag(tag, alts=None):
         tag = League.get_check_str(tag)
@@ -239,10 +251,13 @@ class League:
 
         return tag
 
+    # removes spaces/punctuation and capitalizes tag
     @staticmethod
     def get_check_str(tag):
         return "".join([c for c in tag.upper() if c.isalnum()])
 
+    # returns true if tournament matches have already been
+    # added from this url
     def check_tourney_url(self, url):
         for t in self.tournaments:
             if url == t["url"]:

@@ -5,9 +5,6 @@ from league import League, Match
 
 
 def get_tournament_from_url(url, strength, alts=None):
-    if " " in url:
-        pass
-
     if "challonge.com" in url:
         return ChallongeTournament(url, strength, alts=alts)
 
@@ -40,6 +37,8 @@ class ChallongeTournament:
             "date": self.date
         }
 
+    # matches challonge data's "id" value to a player tag
+    # then checks tag against alts using League.check_tag()
     def get_tag_by_id(self, value):
         for p in self.participants:
             if p["id"] == value:
@@ -59,7 +58,7 @@ class ChallongeTournament:
 
             # check data is complete
             include = winner_tag and loser_tag  # True unless
-            #                                     Challonge data is incomplete
+            #                    Challonge data is incomplete
 
             # check names to include list
             if player_list:

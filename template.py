@@ -1,4 +1,13 @@
+def get_div(class_name, body, t=0):
 
+    return "{}<div class='{}'>\n{}{}\n{}</div>\n".format(
+        "\t" * t, class_name,
+        "\t" * (t + 1), body,
+        "\t" * t
+    )
+
+
+# convert json player data to html
 def get_player_element(player, rank, p=0):
     tag = player["tag"]
     rating = player["rating"]
@@ -49,6 +58,7 @@ def get_player_element(player, rank, p=0):
     return "\n\n" + get_div(class_name, body)
 
 
+# convert json match data to html
 def get_match_element(match):
     winner = match["winner"]
     loser = match["loser"]
@@ -109,6 +119,7 @@ def get_match_element(match):
     return "\n\n" + get_div("league_match_div", body)
 
 
+# convert json tournament data to html
 def get_tournament_element(tournament):
     # <league_tournament_div>
     #   <tournament_name_div />
@@ -128,19 +139,14 @@ def get_tournament_element(tournament):
     return "\n\n" + get_div("league_tournament_div", body)
 
 
-def get_div(class_name, body, t=0):
-
-    return "{}<div class='{}'>\n{}{}\n{}</div>\n".format(
-        "\t" * t, class_name,
-        "\t" * (t + 1), body,
-        "\t" * t
-    )
-
-
+# convert json league data to static html file
+# provisional_games defines minimum number of games before
+# a player's rating is not flagged as provisional
 def generate_static_html(league_data, css_file, provisional_games=None):
     title = league_data["name"]
     stylesheet = "<link rel='stylesheet' href='{}' />".format(css_file)
-    head = "<head>\n<title>{}</title>\n{}\n</head>".format(title, stylesheet)
+    head = "<!DOCTYPE html><head>\n<title>{}</title>\n{}\n</head>"
+    head = head.format(title, stylesheet)
 
     players = league_data["players"]
     players = sorted(players, key=lambda p: p["rating"], reverse=True)

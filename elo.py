@@ -1,3 +1,6 @@
+# this code adapted from https://www.kaggle.com/kplauritzen/elo-ratings-in-python
+
+
 def get_elo_change(winner_elo, loser_elo, elo_width, k_factor):
     """
     https://en.wikipedia.org/wiki/Elo_rating_system#Mathematical_details
